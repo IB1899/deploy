@@ -16,7 +16,7 @@ server.use(express.static("views"))
 
 
 import { DBconnection } from "./model/model";
-DBconnection(() => server.listen(process.env.port))
+DBconnection(() => server.listen(3001))
 
 server.use(BSRroutes)
 server.use(SSRroutes)

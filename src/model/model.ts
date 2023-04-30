@@ -23,7 +23,7 @@ export let image = model('image', imageSchema)
 export let DBconnection = async (callback: Function) => {
 
     try {
-        await connect(process.env.uri!)
+        await connect('mongodb+srv://IbrahimAli:ibrahim12$@ibrahimali.wxcjdla.mongodb.net/Authentication?retryWrites=true&w=majority')
         console.log("connected to mongodb");
         callback()
     }

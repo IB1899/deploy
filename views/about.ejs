@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="../style/style.css" />
+    <title>Server side rendering</title>
+  </head>
+  <body>
+    <%- include('./navbar.ejs') %>
+
+    <h1>
+      Welcome to the About page <%= passedValue === true ? "Okay" : "Not okay"
+      %>
+    </h1>
+
+    <form id="form">
+      <input type="text" name="name" id="name" placeholder="name" />
+      <input type="text" name="age" id="age" placeholder="age" />
+      <input type="text" name="job" id="job" placeholder="job" />
+      <input type="text" name="country" id="country" placeholder="country" />
+
+      <button>submit</button>
+    </form>
+
+    <script>
+      let form = document.getElementById("form");
+
+      let Send = async () => {
+        let name = form.name.value;
+        let age = form.age.value;
+        let job = form.job.value;
+        let country = form.country.value;
+
+        let data = { name, age, job, country };
+        console.log(data);
+
+        let response = await fetch("/", {
+          method: "Post",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify(data),
+        });
+
+        let message = await response.json()
+
+        console.log(message);
+      };
+
+      form.onsubmit = (e) => {
+        e.preventDefault();
+        Send();
+      };
+    </script>
+  </body>
+</html>

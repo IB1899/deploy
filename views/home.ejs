@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="../style/style.css" />
+    <title>Server side rendering</title>
+  </head>
+
+  <body>
+    <%- include('./navbar.ejs') %>
+
+    <h1>Welcome to the Home page</h1>
+
+    <% if(users){ %>
+      <% users.forEach((user)=>{ %>
+
+        <div class="user">
+
+          <h1> <%= user.name  %> <%= user.age  %></h1>
+          <h2> <%= user.job  %>  <%= user.country  %> </h2>
+          
+        </div>
+       
+      
+      <% }) %> 
+    <% } %>
+
+    <form action="/image" method="post" enctype="multipart/form-data">
+      <input type="file" name="image">
+      <button>submit</button>
+    </form>
+  </body>
+</html>
